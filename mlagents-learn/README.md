@@ -6,7 +6,12 @@ pip install mlagents==0.29.0
 
 ### Run Training
 ```
-mlagents-learn config/vanilla.yaml --env=Build/three-sided-football.exe
+mlagents-learn config/batting.yaml ^
+--env=Build\Discrete\Batting.exe ^
+--run-id=discrete_1 ^
+--num-envs=4 ^
+--width=360 ^
+--height=240
 ```
 ```
 usage: mlagents-learn [-h] [--env ENV_PATH] [--resume] [--force] [--run-id RUN_ID] [--initialize-from RUN_ID]

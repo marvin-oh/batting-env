@@ -4,5 +4,5 @@
 
 <br>
 
-## Environment Information
+## Information about Batting Env
 - [Read Docs](https://github.com/20170375/batting-env/blob/main/docs/infomation.md)

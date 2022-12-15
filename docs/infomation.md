@@ -2,11 +2,13 @@
 
 - Movement of Ball
 
-  <img src="https://user-images.githubusercontent.com/62216628/206841171-370b1d00-43e5-4094-9efb-26cc169edb55.png" width="70%">
- 
+  <img src="https://user-images.githubusercontent.com/62216628/207944237-3ce35867-89f5-4d8d-a52f-7edeecdd2bb6.png" width="70%">
+
+
 - Robot Arm Manipulation
 
-  <img src="https://user-images.githubusercontent.com/62216628/206841099-6aa5acb5-9677-4382-9598-7443d6da9444.png" width="70%">
+  <img src="https://user-images.githubusercontent.com/62216628/207948545-f16a2662-05a8-426f-8024-ad0ee4f29443.png" width="70%">
+
 
 - Observation
 
@@ -23,6 +25,7 @@
   |TOTAL|total vector observation|12|
   
 - Reward Function
-  - +(`ball distance` / 100): if robot hitted the ball, calculate `ball distance` after 5s.
   - -1.0: if robot didn't hit the ball (episode ends).
+  - +(`ball distance` / 50): if robot hitted the ball, calculate `ball distance` after 5s.
   - +1.0: if ball goes too far (position.magnitude > 50) by hitting (episode ends).
+  - -1.0: if ball out of foul line when calculating (episode ends).

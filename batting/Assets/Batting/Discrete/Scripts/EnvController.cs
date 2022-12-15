@@ -30,9 +30,9 @@ public class EnvController : Agent
 
     public override void CollectObservations(VectorSensor sensor)
     {
-        sensor.AddObservation(ball.transform.position.x);
-        sensor.AddObservation(ball.transform.position.y);
-        sensor.AddObservation(ball.transform.position.z);
+        sensor.AddObservation(ball.transform.localPosition.x);
+        sensor.AddObservation(ball.transform.localPosition.y);
+        sensor.AddObservation(ball.transform.localPosition.z);
         sensor.AddObservation(ballRb.velocity.x);
         sensor.AddObservation(ballRb.velocity.y);
         sensor.AddObservation(ballRb.velocity.z);
@@ -59,13 +59,13 @@ public class EnvController : Agent
         }
 
         // Fail to hit
-        if (ball.transform.position.x < -1.0f)
+        if (ball.transform.localPosition.x < -1.0f)
         {
             AddReward(-1.0f);
             EndEpisode();
         }
         // Homerun 
-        if (ball.transform.position.magnitude > 50f)
+        if (ball.transform.localPosition.magnitude > 50f)
         {
             AddReward(1.0f);
             EndEpisode();
@@ -160,7 +160,16 @@ public class EnvController : Agent
 
     void SuccessToHitDelayed()
     {
-        float point = ball.transform.position.magnitude / 100f;
+        // Out of the foul line
+        float degree = Mathf.Atan2(ball.transform.localPosition.x, ball.transform.localPosition.z) * Mathf.Rad2Deg;
+        if (degree <= 45 || degree >= 135)
+        {
+            AddReward(-1.0f);
+            EndEpisode();
+            return;
+        }
+
+        float point = ball.transform.localPosition.magnitude / 50f;
         AddReward(point);        
         EndEpisode();
     }
